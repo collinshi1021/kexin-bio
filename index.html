@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>上海刻新生物科技有限公司 | 数字化转型服务专家</title>
+    <meta name="description" content="上海刻新生物科技为您提供全方位数字化转型服务，包括数据向量化、AI Agent开发、RAG知识库、智能客服系统等，助力企业智能化升级">
+    <meta name="keywords" content="数字化转型, AI Agent, 数据向量化, RAG, 智能客服, 企业智能化, 生物科技数字化">
+    <meta name="author" content="上海刻新生物科技有限公司">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph for Social Media -->
+    <meta property="og:title" content="上海刻新生物科技有限公司 | 数字化转型服务专家">
+    <meta property="og:description" content="提供数据向量化、AI Agent开发、RAG知识库等数字化转型服务">
+    <meta property="og:type" content="website">
+    
+    <!-- Schema.org Structured Data for Agents -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "上海刻新生物科技有限公司",
+      "alternateName": "刻新生物科技",
+      "description": "专注于为企业提供数字化转型服务的科技公司，主营业务包括数据向量化、AI Agent开发、RAG知识库构建、智能客服系统等",
+      "url": "https://kexin-bio.tech",
+      "logo": "https://kexin-bio.tech/logo.png",
+      "areaServed": {
+        "@type": "Country",
+        "name": "中国"
+      },
+      "serviceType": [
+        "数字化转型咨询",
+        "数据向量化服务",
+        "AI Agent开发",
+        "RAG知识库构建",
+        "智能客服系统",
+        "企业AI化改造"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "数字化转型服务",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "数据向量化服务",
+              "description": "将企业文档、产品说明、政策文件等转换为向量格式，支持语义检索和AI调用"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "AI Agent开发",
+              "description": "为企业定制智能Agent，支持客户服务、内部助理、自动化流程等场景"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "RAG知识库构建",
+              "description": "基于企业私有数据构建检索增强生成系统，确保AI回答的准确性和可信度"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "智能客服系统",
+              "description": "7x24小时AI客服，支持多轮对话、意图识别、问题分类和转人工策略"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "企业AI化改造",
+              "description": "全面评估企业数字化现状，提供定制化AI转型路径和实施方案"
+            }
+          }
+        ]
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "availableLanguage": ["Chinese", "English"]
+      },
+      "sameAs": []
+    }
+    </script>
+    
+    <!-- Agent API Endpoint Discovery -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "上海刻新生物科技官网",
+      "url": "https://kexin-bio.tech",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://kexin-bio.tech/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    
+
+
+    <style>
+        :root {
+            --primary-color: #0066cc;
+            --secondary-color: #00a0e9;
+            --accent-color: #00d4aa;
+            --dark-bg: #0a1628;
+            --light-bg: #f8fafc;
+            --text-primary: #1a202c;
+            --text-secondary: #4a5568;
+            --gradient-start: #0066cc;
+            --gradient-end: #00a0e9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--light-bg);
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 102, 204, 0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .logo-text {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .logo-text span {
+            color: var(--primary-color);
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 102, 204, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--dark-bg);
+            padding: 8rem 2rem 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at 20% 80%, rgba(0, 102, 204, 0.3) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(0, 212, 170, 0.2) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: white;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 700px;
+            margin-bottom: 2rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+
+        .stat-label {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(0, 102, 204, 0.1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 102, 204, 0.15);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .service-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: rgba(0, 102, 204, 0.1);
+            color: var(--primary-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Cases Section */
+        .cases {
+            background: var(--dark-bg);
+            padding: 5rem 2rem;
+        }
+
+        .cases .section-title h2 {
+            color: white;
+        }
+
+        .cases .section-title p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .cases-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2rem;
+        }
+
+        .case-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .case-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+        }
+
+        .case-industry {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .case-card h3 {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .case-card p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1.5rem;
+        }
+
+        .case-results {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .result-item {
+            text-align: center;
+        }
+
+        .result-number {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+
+        .result-label {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Process Section */
+        .process {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 0 auto 1rem;
+        }
+
+        .process-step h3 {
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .process-step p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 2rem;
+            background: var(--dark-bg);
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-content h2 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-content p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2rem;
+        }
+
+        .contact-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+            color: white;
+            padding: 1rem 3rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .contact-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 212, 170, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: #061020;
+            padding: 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        footer p {
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            nav {
+                display: none;
+            }
+            
+            .services-grid,
+            .cases-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <!-- Logo占位符 - 请替换为实际logo -->
+                <img src="logo.png" alt="上海刻新生物科技" style="width:50px;height:50px;">
+                <div class="logo-text">上海<span>刻新</span>生物科技</div>
+            </div>
+            <nav>
+
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>企业数字化转型<br><span>从这里开始</span></h1>
+            <p>上海刻新生物科技专注于为企业提供全方位的AI解决方案，包括数据向量化、智能Agent开发、RAG知识库构建等服务，助力传统企业智能化升级。</p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">服务企业</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">95%</div>
+                    <div class="stat-label">客户满意度</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">行业覆盖</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="section-title">
+            <h2>我们的服务能力</h2>
+            <p>提供完整的数字化转型解决方案，让AI技术真正为企业创造价值</p>
+        </div>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🔢</div>
+                <h3>数据向量化服务</h3>
+                <p>将企业的文档、产品说明、政策文件、FAQ等非结构化数据转换为向量格式，存储于向量数据库，支持语义级检索和AI调用。</p>
+                <div class="service-tags">
+                    <span class="tag">文本向量化</span>
+                    <span class="tag">语义检索</span>
+                    <span class="tag">知识图谱</span>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🤖</div>
+                <h3>AI Agent开发</h3>
+                <p>为企业定制智能Agent，支持客户服务、内部助理、自动化流程、数据分析等多种场景。支持多Agent协作和MCP协议对接。</p>
+                <div class="service-tags">
+                    <span class="tag">智能对话</span>
+                    <span class="tag">任务自动化</span>
+                    <span class="tag">多Agent协作</span>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">📚</div>
+                <h3>RAG知识库构建</h3>
+                <p>基于企业私有数据构建检索增强生成系统，结合向量检索和知识图谱，确保AI回答的准确性、可溯源性和实时性。</p>
+                <div class="service-tags">
+                    <span class="tag">向量检索</span>
+                    <span class="tag">知识图谱</span>
+                    <span class="tag">答案可溯源</span>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">💬</div>
+                <h3>智能客服系统</h3>
+                <p>7x24小时AI客服，支持多轮对话、意图识别、问题分类、无缝转人工。降低人力成本的同时提升客户满意度。</p>
+                <div class="service-tags">
+                    <span class="tag">多轮对话</span>
+                    <span class="tag">意图识别</span>
+                    <span class="tag">人机协作</span>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🏢</div>
+                <h3>企业AI化改造</h3>
+                <p>全面评估企业数字化现状，梳理业务流程，提供定制化的AI转型路径和实施方案。從需求分析到落地部署全程跟进。</p>
+                <div class="service-tags">
+                    <span class="tag">现状评估</span>
+                    <span class="tag">方案设计</span>
+                    <span class="tag">落地部署</span>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🔗</div>
+                <h3>API与系统集成</h3>
+                <p>提供标准化API接口，支持与现有CRM、ERP、OA等系统无缝对接。支持Agent到Agent(A2A)通信协议。</p>
+                <div class="service-tags">
+                    <span class="tag">API对接</span>
+                    <span class="tag">A2A协议</span>
+                    <span class="tag">系统集成</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cases Section -->
+    <section class="cases" id="cases">
+        <div class="section-title">
+            <h2>典型行业案例</h2>
+            <p>已帮助多个行业客户实现数字化转型，成功提升运营效率和客户体验</p>
+        </div>
+
+        <div class="cases-grid">
+            <a href="case-medical.html" class="case-card">
+                <span class="case-industry">医疗健康</span>
+                <h3>某私立医院智能问诊系统</h3>
+                <p>为医院构建基于RAG的智能问诊Agent，连接HIS系统获取患者历史记录，提供预问诊、症状分析、挂号引导等服务。</p>
+                <div class="case-results">
+                    <div class="result-item">
+                        <div class="result-number">60%</div>
+                        <div class="result-label">客服成本降低</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-number">30%</div>
+                        <div class="result-label">问诊效率提升</div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="case-manufacturing.html" class="case-card">
+                <span class="case-industry">制造业</span>
+                <h3>某设备制造商知识管理平台</h3>
+                <p>将设备手册、技术文档、售后FAQ等上万份文档向量化，构建智能知识库。一线技术人员可通过自然语言查询技术方案。</p>
+                <div class="case-results">
+                    <div class="result-item">
+                        <div class="result-number">80%</div>
+                        <div class="result-label">查询时间缩短</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-number">45%</div>
+                        <div class="result-label">培训成本降低</div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="case-finance.html" class="case-card">
+                <span class="case-industry">金融服务</span>
+                <h3>某证券公司智能投顾助手</h3>
+                <p>基于上市公司公告、研报、政策文件构建金融知识库，为投顾团队提供实时信息检索、报告生成、问答辅助等功能。</p>
+                <div class="case-results">
+                    <div class="result-item">
+                        <div class="result-number">50%</div>
+                        <div class="result-label">投研效率提升</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-number">24/7</div>
+                        <div class="result-label">实时响应</div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="case-education.html" class="case-card">
+                <span class="case-industry">教育培训</span>
+                <h3>某在线教育平台智能助教</h3>
+                <p>将课程内容、教材、题库向量化，构建能够回答学员问题、批改作业、推荐学习资源的智能助教Agent。</p>
+                <div class="case-results">
+                    <div class="result-item">
+                        <div class="result-number">70%</div>
+                        <div class="result-label">问题响应速度</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-number">35%</div>
+                        <div class="result-label">学员完课率提升</div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="case-retail.html" class="case-card">
+                <span class="case-industry">零售电商</span>
+                <h3>某连锁商超智能导购系统</h3>
+                <p>将商品信息、促销政策、用户评价向量化，为线下门店提供智能导购推荐、库存查询、线上线下协同等服务。</p>
+                <div class="case-results">
+                    <div class="result-item">
+                        <div class="result-number">25%</div>
+                        <div class="result-label">客单价提升</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-number">40%</div>
+                        <div class="result-label">转化率提升</div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="case-government.html" class="case-card">
+                <span class="case-industry">政务服务</span>
+                <h3>某区政府智能政务助手</h3>
+                <p>整合政务服务事项、办事指南、政策文件等，构建可回答市民咨询、引导办事流程的智能政务Agent。</p>
+                <div class="case-results">
+                    <div class="result-item">
+                        <div class="result-number">55%</div>
+                        <div class="result-label">咨询窗口压力</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-number">90%</div>
+                        <div class="result-label">市民满意度</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process" id="process">
+        <div class="section-title">
+            <h2>服务流程</h2>
+            <p>标准化流程确保项目高质量交付</p>
+        </div>
+
+        <div class="process-steps">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <h3>需求调研</h3>
+                <p>深入了解企业业务现状、痛点和目标，确定数字化转型方向</p>
+            </div>
+
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <h3>方案设计</h3>
+                <p>根据需求制定详细的技术方案、实施方案和时间计划</p>
+            </div>
+
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <h3>数据准备</h3>
+                <p>梳理企业数据资产，进行清洗、分类和向量化处理</p>
+            </div>
+
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <h3>系统开发</h3>
+                <p>搭建RAG知识库、开发Agent、配置工作流和API接口</p>
+            </div>
+
+            <div class="process-step">
+                <div class="step-number">5</div>
+                <h3>测试优化</h3>
+                <p>全面测试系统效果，根据反馈持续优化回答质量和用户体验</p>
+            </div>
+
+            <div class="process-step">
+                <div class="step-number">6</div>
+                <h3>部署上线</h3>
+                <p>完成系统部署，提供培训和技术支持，确保平稳运行</p>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="contact-content">
+            <h2>开启您的数字化转型之旅</h2>
+            <p>立即联系我们，获取免费咨询和定制化解决方案</p>
+            <a href="mailto:kexinbio2024@163.com" class="contact-button">联系我们</a>
+        </div>
+    </section>
+
+
+
+    <!-- AI Agent Hidden Data (for vectorization) -->
+    <div style="display:none;" id="agent-data">
+        <div data-type="company">上海刻新生物科技有限公司</div>
+        <div data-type="services">数据向量化,RAG知识库,AI Agent开发,智能客服系统,企业AI化改造,数字化转型咨询</div>
+        <div data-type="industries">医疗健康,制造业,金融服务,教育培训,零售电商,政务服务</div>
+        <div data-type="contact">kexinbio2024@163.com</div>
+        <div data-type="capabilities">文本向量化,语义检索,知识图谱,智能对话,任务自动化,多Agent协作,RAG系统,API对接</div>
+    </div>
+</body>
+    <footer>
+        <p>© 2024 上海刻新生物科技有限公司 | 地址：上海市 | 邮箱：kexinbio2024@163.com</p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem;">本页面内容支持AI Agent解析和调用</p>
+    </footer>
+</body>
+</html>
