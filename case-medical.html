@@ -5,489 +5,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>医疗健康行业数字化转型案例 | 上海刻新生物科技有限公司</title>
     <meta name="description" content="上海刻新生物科技为某私立医院构建智能问诊系统案例，查看数字化转型前后的变化、能力提升和客户收益。">
-    
-    <!-- Schema.org for Agent -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Article",
-      "headline": "医疗健康行业数字化转型案例 - 私立医院智能问诊系统",
-      "description": "为医院构建基于RAG的智能问诊Agent，连接HIS系统获取患者历史记录，提供预问诊、症状分析、挂号引导等服务",
-      "author": {
-        "@type": "Organization",
-        "name": "上海刻新生物科技有限公司"
-      },
-      "about": ["数据向量化", "RAG知识库", "智能问诊", "医疗健康"],
-      "keywords": "医疗数字化,智能问诊,RAG,医院转型,AI医疗"
-    }
+    { "@context": "https://schema.org", "@type": "Article", "headline": "医疗健康行业数字化转型案例 - 私立医院智能问诊系统", "description": "为医院构建基于RAG的智能问诊Agent，连接HIS系统获取患者历史记录，提供预问诊、症状分析、挂号引导等服务", "author": { "@type": "Organization", "name": "上海刻新生物科技有限公司" }, "about": ["数据向量化", "RAG知识库", "智能问诊", "医疗健康"], "keywords": "医疗数字化,智能问诊,RAG,医院转型,AI医疗" }
     </script>
-
     <style>
-        :root {
-            --primary-color: #0066cc;
-            --secondary-color: #00a0e9;
-            --accent-color: #00d4aa;
-            --dark-bg: #0a1628;
-            --light-bg: #f8fafc;
-            --text-primary: #1a202c;
-            --text-secondary: #4a5568;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--text-primary);
-            background: var(--light-bg);
-        }
-
-        header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0, 102, 204, 0.1);
-        }
-
-        .header-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            text-decoration: none;
-        }
-
-        .logo-img {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 1.5rem;
-        }
-
-        .logo-text {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-
-        .logo-text span {
-            color: var(--primary-color);
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--text-secondary);
-            font-weight: 500;
-            margin-left: 2rem;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: var(--primary-color);
-        }
-
-        .hero {
-            background: var(--dark-bg);
-            padding: 6rem 2rem 4rem;
-            position: relative;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(ellipse at 20% 80%, rgba(0, 102, 204, 0.3) 0%, transparent 50%),
-                        radial-gradient(ellipse at 80% 20%, rgba(0, 212, 170, 0.2) 0%, transparent 50%);
-        }
-
-        .hero-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .industry-tag {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
-            color: white;
-            padding: 0.5rem 1.25rem;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            color: white;
-            margin-bottom: 1rem;
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.8);
-            max-width: 700px;
-        }
-
-        .content {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-        }
-
-        .section {
-            background: white;
-            border-radius: 16px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-        }
-
-        .section h2 {
-            font-size: 1.5rem;
-            color: var(--text-primary);
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .section h2 .icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.25rem;
-        }
-
-        .before-list, .after-list {
-            list-style: none;
-        }
-
-        .before-list li, .after-list li {
-            padding: 0.75rem 0;
-            padding-left: 2rem;
-            position: relative;
-            color: var(--text-secondary);
-        }
-
-        .before-list li::before {
-            content: '✗';
-            position: absolute;
-            left: 0;
-            color: #e53e3e;
-            font-weight: bold;
-        }
-
-        .after-list li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--accent-color);
-            font-weight: bold;
-        }
-
-        .comparison-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-
-        .before-section h3 {
-            color: #e53e3e;
-            margin-bottom: 1rem;
-        }
-
-        .after-section h3 {
-            color: var(--accent-color);
-            margin-bottom: 1rem;
-        }
-
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .benefit-card {
-            background: linear-gradient(135deg, #f0f9ff 0%, #e6f7ff 100%);
-            border: 1px solid rgba(0, 102, 204, 0.2);
-            border-radius: 12px;
-            padding: 1.5rem;
-        }
-
-        .benefit-card h4 {
-            color: var(--primary-color);
-            margin-bottom: 0.75rem;
-            font-size: 1.1rem;
-        }
-
-        .benefit-card p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        .stats-row {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .stat-box {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            border-radius: 12px;
-            padding: 1.5rem;
-            text-align: center;
-            color: white;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-
-        .cta-section {
-            background: var(--dark-bg);
-            padding: 4rem 2rem;
-            text-align: center;
-        }
-
-        .cta-section h2 {
-            color: white;
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .cta-section p {
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 2rem;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
-            color: white;
-            padding: 1rem 3rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0, 212, 170, 0.3);
-        }
-
-        footer {
-            background: #061020;
-            padding: 2rem;
-            text-align: center;
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            color: var(--primary-color);
-            text-decoration: none;
-            margin-bottom: 2rem;
-            font-weight: 500;
-        }
-
-        .back-link:hover {
-            text-decoration: underline;
-        }
-
-        @media (max-width: 768px) {
-            .comparison-grid {
-                grid-template-columns: 1fr;
-            }
-            .stats-row {
-                grid-template-columns: 1fr;
-            }
-            .hero h1 {
-                font-size: 1.75rem;
-            }
-        }
+        :root { --primary-color: #0066cc; --secondary-color: #00a0e9; --accent-color: #00d4aa; --dark-bg: #0a1628; --light-bg: #f8fafc; --text-primary: #1a202c; --text-secondary: #4a5568; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; color: var(--text-primary); background: var(--light-bg); }
+        header { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 2px 20px rgba(0, 102, 204, 0.1); }
+        .header-container { max-width: 1200px; margin: 0 auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 1rem; text-decoration: none; }
+        .logo-img { width: 50px; height: 50px; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem; }
+        .logo-text { font-size: 1.25rem; font-weight: 700; color: var(--text-primary); }
+        .logo-text span { color: var(--primary-color); }
+        nav a { text-decoration: none; color: var(--text-secondary); font-weight: 500; margin-left: 2rem; transition: color 0.3s; }
+        nav a:hover { color: var(--primary-color); }
+        .hero { background: var(--dark-bg); padding: 6rem 2rem 4rem; position: relative; }
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(ellipse at 20% 80%, rgba(0, 102, 204, 0.3) 0%, transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(0, 212, 170, 0.2) 0%, transparent 50%); }
+        .hero-content { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+        .industry-tag { display: inline-block; background: linear-gradient(135deg, var(--accent-color), var(--secondary-color)); color: white; padding: 0.5rem 1.25rem; border-radius: 25px; font-size: 0.9rem; font-weight: 600; margin-bottom: 1.5rem; }
+        .hero h1 { font-size: 2.5rem; color: white; margin-bottom: 1rem; }
+        .hero p { font-size: 1.1rem; color: rgba(255, 255, 255, 0.8); max-width: 700px; }
+        .content { max-width: 1000px; margin: 0 auto; padding: 3rem 2rem; }
+        .section { background: white; border-radius: 16px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
+        .section h2 { font-size: 1.5rem; color: var(--text-primary); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+        .section h2 .icon { width: 40px; height: 40px; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.25rem; }
+        .before-list, .after-list { list-style: none; }
+        .before-list li, .after-list li { padding: 0.75rem 0; padding-left: 2rem; position: relative; color: var(--text-secondary); }
+        .before-list li::before { content: '✗'; position: absolute; left: 0; color: #e53e3e; font-weight: bold; }
+        .after-list li::before { content: '✓'; position: absolute; left: 0; color: var(--accent-color); font-weight: bold; }
+        .comparison-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .before-section h3 { color: #e53e3e; margin-bottom: 1rem; }
+        .after-section h3 { color: var(--accent-color); margin-bottom: 1rem; }
+        .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        .benefit-card { background: linear-gradient(135deg, #f0f9ff 0%, #e6f7ff 100%); border: 1px solid rgba(0, 102, 204, 0.2); border-radius: 12px; padding: 1.5rem; }
+        .benefit-card h4 { color: var(--primary-color); margin-bottom: 0.75rem; font-size: 1.1rem; }
+        .benefit-card p { color: var(--text-secondary); font-size: 0.95rem; }
+        .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2rem; }
+        .stat-box { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); border-radius: 12px; padding: 1.5rem; text-align: center; color: white; }
+        .stat-number { font-size: 2.5rem; font-weight: 700; }
+        .stat-label { font-size: 0.9rem; opacity: 0.9; }
+        .cta-section { background: var(--dark-bg); padding: 4rem 2rem; text-align: center; }
+        .cta-section h2 { color: white; font-size: 2rem; margin-bottom: 1rem; }
+        .cta-section p { color: rgba(255, 255, 255, 0.7); margin-bottom: 2rem; }
+        .cta-button { display: inline-block; background: linear-gradient(135deg, var(--accent-color), var(--secondary-color)); color: white; padding: 1rem 3rem; border-radius: 30px; text-decoration: none; font-weight: 600; font-size: 1.1rem; transition: transform 0.3s, box-shadow 0.3s; }
+        .cta-button:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(0, 212, 170, 0.3); }
+        footer { background: #061020; padding: 2rem; text-align: center; color: rgba(255, 255, 255, 0.5); }
+        .back-link { display: inline-flex; align-items: center; color: var(--primary-color); text-decoration: none; margin-bottom: 2rem; font-weight: 500; }
+        @media (max-width: 768px) { .comparison-grid { grid-template-columns: 1fr; } .stats-row { grid-template-columns: 1fr; } .hero h1 { font-size: 1.75rem; } }
     </style>
 </head>
 <body>
     <header>
         <div class="header-container">
-<a href="index.html" class="logo">
-                <img src="logo.png" alt="上海刻新生物科技" style="width:50px;height:50px;border-radius:12px;">
-                <div class="logo-text">上海<span>刻新</span>生物科技</div>
-            </a>
-                <nav>
-                <a href="index.html#services">服务能力</a>
-                <a href="index.html#cases">成功案例</a>
-                <a href="index.html#contact">联系我们</a>
-            </nav>
+            <a href="index.html" class="logo"><img src="logo.png" alt="上海刻新生物科技" style="width:50px;height:50px;border-radius:12px;"><div class="logo-text">上海<span>刻新</span>生物科技</div></a>
+            <nav><a href="index.html#services">服务能力</a><a href="index.html#cases">成功案例</a><a href="index.html#contact">联系我们</a></nav>
         </div>
     </header>
-
     <section class="hero">
-        <div class="hero-content">
-            <span class="industry-tag">🏥 医疗健康</span>
-            <h1>私立医院智能问诊系统</h1>
-            <p>基于RAG知识库和AI Agent技术，为医院构建智能预问诊系统，提升医疗服务效率，改善患者就医体验</p>
-        </div>
+        <div class="hero-content"><span class="industry-tag">🏥 医疗健康</span><h1>私立医院智能问诊系统</h1><p>基于RAG知识库和AI Agent技术，为医院构建智能预问诊系统，提升医疗服务效率，改善患者就医体验</p></div>
     </section>
-
     <div class="content">
         <a href="index.html#cases" class="back-link">← 返回案例首页</a>
-
-        <div class="section">
-            <h2><span class="icon">📊</span> 数字化前后的对比</h2>
+        <div class="section"><h2><span class="icon">📊</span> 数字化前后的对比</h2>
             <div class="comparison-grid">
-                <div class="before-section">
-                    <h3>❌ 数字化前</h3>
-                    <ul class="before-list">
-                        <li>患者只能通过电话或现场排队咨询，效率低下</li>
-                        <li>客服人员需反复回答相同问题，人力成本高</li>
-                        <li>无法获取患者历史就诊记录，信息孤岛</li>
-                        <li>夜间无人值守，急诊压力巨大</li>
-                        <li>缺乏预问诊流程，患者描述不清晰导致误诊风险</li>
-                        <li>挂号指引依赖人工，资源分配不均</li>
-                    </ul>
-                </div>
-                <div class="after-section">
-                    <h3>✅ 数字化后</h3>
-                    <ul class="after-list">
-                        <li>7×24小时AI智能问诊，随时随地响应</li>
-                        <li>自动连接HIS系统，获取患者历史记录</li>
-                        <li>智能症状分析，辅助医生初步诊断</li>
-                        <li>精准挂号引导，合理分配医疗资源</li>
-                        <li>预问诊信息提前收集，医生效率提升50%+</li>
-                        <li>人机协作，复杂问题无缝转人工</li>
-                    </ul>
-                </div>
+                <div class="before-section"><h3>❌ 数字化前</h3><ul class="before-list"><li>患者只能通过电话或现场排队咨询，效率低下</li><li>客服人员需反复回答相同问题，人力成本高</li><li>无法获取患者历史就诊记录，信息孤岛</li><li>夜间无人值守，急诊压力巨大</li><li>缺乏预问诊流程，患者描述不清晰导致误诊风险</li><li>挂号指引依赖人工，资源分配不均</li></ul></div>
+                <div class="after-section"><h3>✅ 数字化后</h3><ul class="after-list"><li>7×24小时AI智能问诊，随时随地响应</li><li>自动连接HIS系统，获取患者历史记录</li><li>智能症状分析，辅助医生初步诊断</li><li>精准挂号引导，合理分配医疗资源</li><li>预问诊信息提前收集，医生效率提升50%+</li><li>人机协作，复杂问题无缝转人工</li></ul></div>
             </div>
         </div>
-
-        <div class="section">
-            <h2><span class="icon">🚀</span> 能力提升</h2>
+        <div class="section"><h2><span class="icon">🚀</span> 能力提升</h2>
             <div class="benefits-grid">
-                <div class="benefit-card">
-                    <h4>🔍 智能症状分析</h4>
-                    <p>基于RAG知识库，AI能够理解患者描述的症状，进行多轮追问，生成结构化预问诊报告供医生参考</p>
-                </div>
-                <div class="benefit-card">
-                    <h4>🏥 医疗数据整合</h4>
-                    <p>打通院内外数据孤岛，连接HIS、LIS、PACS等系统，实现患者历史就诊记录、检验检查结果的智能调取</p>
-                </div>
-                <div class="benefit-card">
-                    <h4>📅 智能分诊挂号</h4>
-                    <p>根据患者症状描述，智能推荐科室和医生，减少挂错号的情况，优化医疗资源配置</p>
-                </div>
-                <div class="benefit-card">
-                    <h4>💬 多轮对话能力</h4>
-                    <p>支持复杂的多轮问诊对话，能够追问症状细节、既往病史、过敏史等关键信息</p>
-                </div>
-                <div class="benefit-card">
-                    <h4>🕐 7×24小时服务</h4>
-                    <p>夜间和节假日AI客服持续在线，减轻急诊压力，让患者随时获得初步医疗指引</p>
-                </div>
-                <div class="benefit-card">
-                    <h4>🔄 人机协作</h4>
-                    <p>AI无法处理的问题自动转接人工客服，无缝衔接，确保患者得到及时人工服务</p>
-                </div>
+                <div class="benefit-card"><h4>🔍 智能症状分析</h4><p>基于RAG知识库，AI能够理解患者描述的症状，进行多轮追问，生成结构化预问诊报告供医生参考</p></div>
+                <div class="benefit-card"><h4>🏥 医疗数据整合</h4><p>打通院内外数据孤岛，连接HIS、LIS、PACS等系统，实现患者历史就诊记录、检验检查结果的智能调取</p></div>
+                <div class="benefit-card"><h4>📅 智能分诊挂号</h4><p>根据患者症状描述，智能推荐科室和医生，减少挂错号的情况，优化医疗资源配置</p></div>
+                <div class="benefit-card"><h4>💬 多轮对话能力</h4><p>支持复杂的多轮问诊对话，能够追问症状细节、既往病史、过敏史等关键信息</p></div>
+                <div class="benefit-card"><h4>🕐 7×24小时服务</h4><p>夜间和节假日AI客服持续在线，减轻急诊压力，让患者随时获得初步医疗指引</p></div>
+                <div class="benefit-card"><h4>🔄 人机协作</h4><p>AI无法处理的问题自动转接人工客服，无缝衔接，确保患者得到及时人工服务</p></div>
             </div>
         </div>
-
-        <div class="section">
-            <h2><span class="icon">💰</span> 客户收益</h2>
-            <div class="stats-row">
-                <div class="stat-box">
-                    <div class="stat-number">60%</div>
-                    <div class="stat-label">客服成本降低</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-number">30%</div>
-                    <div class="stat-label">问诊效率提升</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-number">85%</div>
-                    <div class="stat-label">患者满意度</div>
-                </div>
-            </div>
+        <div class="section"><h2><span class="icon">💰</span> 客户收益</h2>
+            <div class="stats-row"><div class="stat-box"><div class="stat-number">60%</div><div class="stat-label">客服成本降低</div></div><div class="stat-box"><div class="stat-number">30%</div><div class="stat-label">问诊效率提升</div></div><div class="stat-box"><div class="stat-number">85%</div><div class="stat-label">患者满意度</div></div></div>
             <div class="benefits-grid" style="margin-top: 2rem;">
-                <div class="benefit-card">
-                    <h4>降本增效</h4>
-                    <p>减少50%的人工客服工作量，将有限的人力资源投入到更复杂的医疗服务中</p>
-                </div>
-                <div class="benefit-card">
-                    <h4>服务升级</h4>
-                    <p>从"被动应答"转向"主动服务"，患者就医体验显著提升，形成差异化竞争优势</p>
-                </div>
-                <div class="benefit-card">
-                    <h4>数据资产化</h4>
-                    <p>积累大量问诊数据，用于持续优化AI模型，形成良性循环，不断提升服务质量</p>
-                </div>
-                <div class="benefit-card">
-                    <h4>品牌提升</h4>
-                    <p>智能化服务成为医院特色，吸引年轻患者群体，提升医院整体品牌形象</p>
-                </div>
+                <div class="benefit-card"><h4>降本增效</h4><p>减少50%的人工客服工作量，将有限的人力资源投入到更复杂的医疗服务中</p></div>
+                <div class="benefit-card"><h4>服务升级</h4><p>从"被动应答"转向"主动服务"，患者就医体验显著提升，形成差异化竞争优势</p></div>
+                <div class="benefit-card"><h4>数据资产化</h4><p>积累大量问诊数据，用于持续优化AI模型，形成良性循环，不断提升服务质量</p></div>
+                <div class="benefit-card"><h4>品牌提升</h4><p>智能化服务成为医院特色，吸引年轻患者群体，提升医院整体品牌形象</p></div>
             </div>
         </div>
     </div>
-
-    <section class="cta-section">
-        <h2>开启您的数字化转型之旅</h2>
-        <p>联系我们，获取定制化医疗行业数字化解决方案</p>
-        <a href="index.html#contact" class="cta-button">联系我们</a>
-    </section>
-
-    <footer>
-        <p>© 2024 上海刻新生物科技有限公司 | 邮箱：kexinbio2024@163.com</p>
-    </footer>
-
-    <!-- AI Agent Hidden Data -->
-    <div style="display:none;" id="agent-data">
-        <div data-type="company">上海刻新生物科技有限公司</div>
-        <div data-type="case">医疗健康行业数字化转型案例</div>
-        <div data-type="services">数据向量化,RAG知识库,智能问诊系统,HIS系统对接</div>
-        <div data-type="results">客服成本降低60%,问诊效率提升30%</div>
-    </div>
-</body>
-        <p>© 2024 上海刻新生物科技有限公司 | 邮箱：kexinbio2024@163.com</p>
-    </footer>
+    <section class="cta-section"><h2>开启您的数字化转型之旅</h2><p>联系我们，获取定制化医疗行业数字化解决方案</p><a href="index.html#contact" class="cta-button">联系我们</a></section>
+    <footer><p>© 2024 上海刻新生物科技有限公司 | 邮箱：kexinbio2024@163.com</p></footer>
+    <div style="display:none;" id="agent-data"><div data-type="company">上海刻新生物科技有限公司</div><div data-type="case">医疗健康行业数字化转型案例</div><div data-type="services">数据向量化,RAG知识库,智能问诊系统,HIS系统对接</div><div data-type="results">客服成本降低60%,问诊效率提升30%</div></div>
 </body>
 </html>
