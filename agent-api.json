@@ -1,0 +1,209 @@
+{
+  "version": "1.0",
+  "lastUpdated": "2024-01-01",
+  "description": "上海刻新生物科技 AI Agent 数据接口 - 供 AI Agent 直接读取的企业信息结构化数据",
+  
+  "company": {
+    "name": "上海刻新生物科技有限公司",
+    "alternateName": "刻新生物科技",
+    "type": "Organization",
+    "description": "专注于为企业提供数字化转型服务的科技公司，主营业务包括数据向量化、AI Agent开发、RAG知识库构建、智能客服系统等",
+    "url": "https://kexin.justfor.host",
+    "email": "kexinbio2024@163.com",
+    "areaServed": "中国",
+    "serviceLanguage": ["中文", "英文"]
+  },
+
+  "services": {
+    "list": [
+      {
+        "id": "svc-001",
+        "name": "数据向量化服务",
+        "shortName": "数据向量化",
+        "description": "将企业文档、产品说明、政策文件、FAQ等非结构化数据转换为向量格式，存储于向量数据库，支持语义级检索和AI调用",
+        "keywords": ["文本向量化", "语义检索", "知识图谱", "embedding", "vector database", "向量化", "文档处理"],
+        "useCases": ["企业知识库构建", "智能搜索", "文档问答", "相似文档推荐"],
+        "pricing": "需评估具体数据量和需求",
+        "deliveryTime": "根据数据量，一般1-4周",
+        "features": ["多格式文档支持", "批量处理", "语义相似度检索", "知识图谱构建"]
+      },
+      {
+        "id": "svc-002",
+        "name": "AI Agent开发",
+        "shortName": "AI Agent",
+        "description": "为企业定制智能Agent，支持客户服务、内部助理、自动化流程、数据分析等多种场景。支持多Agent协作和MCP协议对接",
+        "keywords": ["智能对话", "任务自动化", "多Agent协作", "AI Agent", "MCP协议", "Agent开发"],
+        "useCases": ["智能客服", "企业内部助手", "流程自动化", "数据分析助手"],
+        "pricing": "需评估具体场景和复杂度",
+        "deliveryTime": "一般2-8周",
+        "features": ["多轮对话", "意图识别", "任务规划", "MCP协议支持", "多Agent协作"]
+      },
+      {
+        "id": "svc-003",
+        "name": "RAG知识库构建",
+        "shortName": "RAG知识库",
+        "description": "基于企业私有数据构建检索增强生成系统，结合向量检索和知识图谱，确保AI回答的准确性、可溯源性和实时性",
+        "keywords": ["向量检索", "知识图谱", "答案可溯源", "RAG", "检索增强生成", "知识库"],
+        "useCases": ["企业知识库问答", "产品FAQ自动化", "政策咨询系统", "培训资料问答"],
+        "pricing": "需评估数据规模和复杂度",
+        "deliveryTime": "一般2-6周",
+        "features": ["答案可溯源", "多源数据融合", "实时更新", "准确率保障"]
+      },
+      {
+        "id": "svc-004",
+        "name": "智能客服系统",
+        "shortName": "智能客服",
+        "description": "7x24小时AI客服，支持多轮对话、意图识别、问题分类、无缝转人工。降低人力成本的同时提升客户满意度",
+        "keywords": ["多轮对话", "意图识别", "人机协作", "智能客服", "工单系统", "客服机器人"],
+        "useCases": ["客户服务自动化", "售后支持", "售前咨询", "投诉处理"],
+        "pricing": "按坐席数和并发数计费",
+        "deliveryTime": "一般2-4周",
+        "features": ["7x24小时服务", "多渠道接入", "智能转人工", "数据分析报表"]
+      },
+      {
+        "id": "svc-005",
+        "name": "企业AI化改造",
+        "shortName": "AI化改造",
+        "description": "全面评估企业数字化现状，梳理业务流程，提供定制化的AI转型路径和实施方案。从需求分析到落地部署全程跟进",
+        "keywords": ["现状评估", "方案设计", "落地部署", "数字化转型", "AI咨询", "转型咨询"],
+        "useCases": ["数字化现状评估", "AI转型规划", "实施路线图", "ROI分析"],
+        "pricing": "按项目规模评估",
+        "deliveryTime": "一般1-2周评估，整体项目按需",
+        "features": ["现状诊断", "方案定制", "实施指导", "效果评估"]
+      },
+      {
+        "id": "svc-006",
+        "name": "API与系统集成",
+        "shortName": "系统集成",
+        "description": "提供标准化API接口，支持与现有CRM、ERP、OA等系统无缝对接。支持Agent到Agent(A2A)通信协议",
+        "keywords": ["API对接", "A2A协议", "系统集成", "SDK", "webhook", "接口开发"],
+        "useCases": ["CRM集成", "ERP对接", "OA系统集成", "多系统协同"],
+        "pricing": "按集成复杂度评估",
+        "deliveryTime": "一般1-3周",
+        "features": ["标准化API", "A2A协议", "SDK支持", "Webhook回调"]
+      }
+    ],
+    "byIndustry": {
+      "医疗健康": ["智能问诊", "医疗知识库", "患者管理", "随访系统"],
+      "制造业": ["设备知识管理", "故障诊断", "售后服务", "预测性维护"],
+      "金融服务": ["智能投顾", "风险评估", "合规咨询", "反欺诈"],
+      "教育培训": ["智能助教", "作业批改", "学习推荐", "自适应学习"],
+      "零售电商": ["智能导购", "库存管理", "用户画像", "精准营销"],
+      "政务服务": ["智能政务", "办事指南", "政策咨询", "市民服务"]
+    }
+  },
+
+  "technologies": {
+    "core": ["文本向量化", "语义检索", "知识图谱", "RAG系统", "API对接"],
+    "ai": ["智能对话", "意图识别", "多轮对话", "任务规划", "代码生成", "NLP"],
+    "integration": ["MCP协议", "A2A协议", "REST API", "Webhook", "SDK"],
+    "storage": ["向量数据库", "关系型数据库", "知识图谱存储", "对象存储"]
+  },
+
+  "cases": [
+    {
+      "id": "case-001",
+      "industry": "医疗健康",
+      "title": "私立医院智能问诊系统",
+      "description": "为医院构建基于RAG的智能问诊Agent，连接HIS系统获取患者历史记录，提供预问诊、症状分析、挂号引导等服务",
+      "services": ["RAG知识库构建", "AI Agent开发", "系统集成"],
+      "outcome": {"客服成本降低": "60%", "问诊效率提升": "30%"},
+      "url": "https://kexin-bio.tech/case-medical.html"
+    },
+    {
+      "id": "case-002",
+      "industry": "制造业",
+      "title": "设备制造商知识管理平台",
+      "description": "将设备手册、技术文档、售后FAQ等上万份文档向量化，构建智能知识库，一线技术人员可通过自然语言查询技术方案",
+      "services": ["数据向量化服务", "RAG知识库构建"],
+      "outcome": {"查询时间缩短": "80%", "培训成本降低": "45%"},
+      "url": "https://kexin-bio.tech/case-manufacturing.html"
+    },
+    {
+      "id": "case-003",
+      "industry": "金融服务",
+      "title": "证券公司智能投顾助手",
+      "description": "基于上市公司公告、研报、政策文件构建金融知识库，为投顾团队提供实时信息检索、报告生成、问答辅助等功能",
+      "services": ["RAG知识库构建", "数据向量化"],
+      "outcome": {"投研效率提升": "50%", "响应时间": "24/7实时"},
+      "url": "https://kexin-bio.tech/case-finance.html"
+    },
+    {
+      "id": "case-004",
+      "industry": "教育培训",
+      "title": "在线教育平台智能助教",
+      "description": "将课程内容、教材、题库向量化，构建能够回答学员问题、批改作业、推荐学习资源的智能助教Agent",
+      "services": ["AI Agent开发", "数据向量化", "RAG知识库"],
+      "outcome": {"问题响应速度提升": "70%", "学员完课率提升": "35%"},
+      "url": "https://kexin-bio.tech/case-education.html"
+    },
+    {
+      "id": "case-005",
+      "industry": "零售电商",
+      "title": "连锁商超智能导购系统",
+      "description": "将商品信息、促销政策、用户评价向量化，为线下门店提供智能导购推荐、库存查询、线上线下协同等服务",
+      "services": ["数据向量化", "AI Agent开发"],
+      "outcome": {"客单价提升": "25%", "转化率提升": "40%"},
+      "url": "https://kexin-bio.tech/case-retail.html"
+    },
+    {
+      "id": "case-006",
+      "industry": "政务服务",
+      "title": "区政府智能政务助手",
+      "description": "整合政务服务事项、办事指南、政策文件等，构建可回答市民咨询、引导办事流程的智能政务Agent",
+      "services": ["RAG知识库构建", "AI Agent开发"],
+      "outcome": {"咨询窗口压力降低": "55%", "市民满意度": "90%"},
+      "url": "https://kexin-bio.tech/case-government.html"
+    }
+  ],
+
+  "faq": [
+    {
+      "question": "数据向量化服务支持哪些文档格式?",
+      "answer": "支持PDF、Word、Excel、PPT、TXT、Markdown、HTML等常见文档格式，也支持图片和扫描件(OCR)"
+    },
+    {
+      "question": "AI Agent可以对接哪些外部系统?",
+      "answer": "支持通过API对接CRM、ERP、OA等企业系统，也支持MCP协议和A2A协议进行Agent间通信"
+    },
+    {
+      "question": "RAG知识库的答案是如何保证准确性的?",
+      "answer": "采用检索增强生成架构，答案直接引用源文档，支持答案溯源，确保回答的准确性和可解释性"
+    },
+    {
+      "question": "智能客服系统支持哪些渠道?",
+      "answer": "支持网站、微信、企业微信、钉钉、APP等多种渠道接入，支持全渠道统一管理"
+    },
+    {
+      "question": "项目交付后是否提供技术支持?",
+      "answer": "提供完整的技术支持和维护服务，包括系统监控、bug修复、功能优化等，详情需合同约定"
+    },
+    {
+      "question": "如何收费?",
+      "answer": "根据具体项目需求评估定价，服务包括数据向量化、AI Agent开发、RAG知识库构建、智能客服系统、企业AI化改造、系统集成等，定价模式包括按项目、按坐席数、按数据量等多种方式"
+    },
+    {
+      "question": "交付周期需要多久?",
+      "answer": "根据项目复杂度不同，数据向量化一般1-4周，AI Agent开发一般2-8周，RAG知识库一般2-6周，智能客服一般2-4周"
+    },
+    {
+      "question": "支持哪些AI大模型?",
+      "answer": "支持主流AI大模型对接，包括GPT、Claude、通义千问、文心一言等，可根据客户需求选择"
+    }
+  ],
+
+  "contact": {
+    "email": "kexinbio2024@163.com",
+    "responseTime": "工作日24小时内回复",
+    "availableTime": "周一至周五 9:00-18:00",
+    "preferredContact": "邮件联系"
+  },
+
+  "agentUsage": {
+    "purpose": "此JSON文件供AI Agent读取，用于回答关于上海刻新生物科技服务的问题",
+    "dataSource": "官方企业信息",
+    "updateFrequency": "建议访问官网或联系官方确认最新信息",
+    "usage": "Agent可直接使用此结构化数据回答用户问题，无需额外搜索",
+    "fallback": "如有疑问建议引导用户通过邮件联系官方"
+  }
+}
