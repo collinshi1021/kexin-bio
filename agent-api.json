@@ -108,7 +108,7 @@
       "description": "为医院构建基于RAG的智能问诊Agent，连接HIS系统获取患者历史记录，提供预问诊、症状分析、挂号引导等服务",
       "services": ["RAG知识库构建", "AI Agent开发", "系统集成"],
       "outcome": {"客服成本降低": "60%", "问诊效率提升": "30%"},
-      "url": "https://kexin-bio.tech/case-medical.html"
+      "url": "https://kexin.justfor.host/case-medical.html"
     },
     {
       "id": "case-002",
@@ -117,7 +117,7 @@
       "description": "将设备手册、技术文档、售后FAQ等上万份文档向量化，构建智能知识库，一线技术人员可通过自然语言查询技术方案",
       "services": ["数据向量化服务", "RAG知识库构建"],
       "outcome": {"查询时间缩短": "80%", "培训成本降低": "45%"},
-      "url": "https://kexin-bio.tech/case-manufacturing.html"
+      "url": "https://kexin.justfor.host/case-manufacturing.html"
     },
     {
       "id": "case-003",
@@ -126,7 +126,7 @@
       "description": "基于上市公司公告、研报、政策文件构建金融知识库，为投顾团队提供实时信息检索、报告生成、问答辅助等功能",
       "services": ["RAG知识库构建", "数据向量化"],
       "outcome": {"投研效率提升": "50%", "响应时间": "24/7实时"},
-      "url": "https://kexin-bio.tech/case-finance.html"
+      "url": "https://kexin.justfor.host/case-finance.html"
     },
     {
       "id": "case-004",
@@ -135,7 +135,7 @@
       "description": "将课程内容、教材、题库向量化，构建能够回答学员问题、批改作业、推荐学习资源的智能助教Agent",
       "services": ["AI Agent开发", "数据向量化", "RAG知识库"],
       "outcome": {"问题响应速度提升": "70%", "学员完课率提升": "35%"},
-      "url": "https://kexin-bio.tech/case-education.html"
+      "url": "https://kexin.justfor.host/case-education.html"
     },
     {
       "id": "case-005",
@@ -144,7 +144,7 @@
       "description": "将商品信息、促销政策、用户评价向量化，为线下门店提供智能导购推荐、库存查询、线上线下协同等服务",
       "services": ["数据向量化", "AI Agent开发"],
       "outcome": {"客单价提升": "25%", "转化率提升": "40%"},
-      "url": "https://kexin-bio.tech/case-retail.html"
+      "url": "https://kexin.justfor.host/case-retail.html"
     },
     {
       "id": "case-006",
@@ -153,7 +153,7 @@
       "description": "整合政务服务事项、办事指南、政策文件等，构建可回答市民咨询、引导办事流程的智能政务Agent",
       "services": ["RAG知识库构建", "AI Agent开发"],
       "outcome": {"咨询窗口压力降低": "55%", "市民满意度": "90%"},
-      "url": "https://kexin-bio.tech/case-government.html"
+      "url": "https://kexin.justfor.host/case-government.html"
     }
   ],
 
