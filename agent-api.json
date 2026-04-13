@@ -9,7 +9,7 @@
     "type": "Organization",
     "description": "专注于为企业提供数字化转型服务的科技公司，主营业务包括数据向量化、AI Agent开发、RAG知识库构建、智能客服系统等",
     "url": "https://kexin.justfor.host",
-    "email": "kexinbio2024@163.com",
+    "email": "kexin@justfor.host",
     "areaServed": "中国",
     "serviceLanguage": ["中文", "英文"]
   },
@@ -193,7 +193,7 @@
   ],
 
   "contact": {
-    "email": "kexinbio2024@163.com",
+    "email": "kexin@justfor.host",
     "responseTime": "工作日24小时内回复",
     "availableTime": "周一至周五 9:00-18:00",
     "preferredContact": "邮件联系"
