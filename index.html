@@ -1,0 +1,838 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>刻新 · 让 AI 走进你的业务一线</title>
+    <meta name="description" content="刻新 — AI Agent、RAG 知识库、Forward Deployed AI 驻场交付，为企业提供端到端的 AI 化转型服务。">
+    <meta name="keywords" content="数字化转型, AI Agent, RAG, 智能客服, Forward Deployed AI, 刻新">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#1d1d1f">
+    <link rel="icon" type="image/png" href="logo.png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "上海刻新生物科技有限公司",
+      "alternateName": "刻新",
+      "description": "为企业提供 AI Agent、RAG 知识库、Forward Deployed AI 驻场交付等端到端数字化转型服务",
+      "url": "https://kexin.justfor.host/",
+      "logo": "https://kexin.justfor.host/logo.png",
+      "contactPoint": { "@type": "ContactPoint", "contactType": "customer service", "email": "kexin@justfor.host", "availableLanguage": ["Chinese", "English"] }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebAPI",
+      "name": "刻新 · 企业知识库 API",
+      "description": "刻新官方 AI 助手数据接口",
+      "url": "https://kexin.justfor.host",
+      "version": "3.0",
+      "provider": { "@type": "Organization", "name": "上海刻新生物科技有限公司", "email": "kexin@justfor.host" }
+    }
+    </script>
+
+    <style>
+        /* ============================================
+           DESIGN TOKENS · Apple 黑白灰
+           ============================================ */
+        :root {
+            --bg-pure: #ffffff;
+            --bg-silver: #f5f5f7;
+            --bg-silver-2: #fbfbfd;
+            --bg-black: #000000;
+            --bg-graphite: #1d1d1f;
+
+            --text-on-light-1: #1d1d1f;
+            --text-on-light-2: #6e6e73;
+            --text-on-light-3: #86868b;
+            --text-on-dark-1: #f5f5f7;
+            --text-on-dark-2: #a1a1a6;
+            --text-on-dark-3: #6e6e73;
+
+            --border-light: #d2d2d7;
+            --border-lighter: #e5e5e7;
+            --border-on-dark: rgba(255, 255, 255, 0.1);
+            --border-on-dark-strong: rgba(255, 255, 255, 0.2);
+
+            /* The only "color" — tonal, not chromatic */
+            --accent: #1d1d1f;
+            --accent-on-dark: #f5f5f7;
+
+            --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
+            --font-display: "SF Pro Display", -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", sans-serif;
+
+            --container: 980px;
+            --container-wide: 1200px;
+
+            --r-sm: 8px;
+            --r-md: 12px;
+            --r-lg: 18px;
+            --r-xl: 24px;
+            --r-full: 9999px;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+        body {
+            font-family: var(--font-sans);
+            font-size: 17px;
+            line-height: 1.47;
+            color: var(--text-on-light-1);
+            background: var(--bg-pure);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+        img, svg { display: block; max-width: 100%; }
+        a { color: inherit; text-decoration: none; }
+        button { font: inherit; cursor: pointer; border: none; background: none; }
+        ul, ol { list-style: none; }
+        ::selection { background: rgba(29, 29, 31, 0.15); color: var(--accent); }
+
+        /* ============================================
+           LAYOUT
+           ============================================ */
+        .container { width: 100%; max-width: var(--container); margin: 0 auto; padding: 0 1.5rem; }
+        .container-wide { width: 100%; max-width: var(--container-wide); margin: 0 auto; padding: 0 1.5rem; }
+
+        /* ============================================
+           TYPOGRAPHY
+           ============================================ */
+        .eyebrow {
+            display: block;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--text-on-light-2);
+            margin-bottom: 1.25rem;
+        }
+        .eyebrow.on-dark { color: var(--text-on-dark-2); }
+        .display-1 {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-weight: 600;
+            line-height: 1.05;
+            letter-spacing: -0.035em;
+        }
+        .display-2 {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 600;
+            line-height: 1.08;
+            letter-spacing: -0.03em;
+        }
+        .display-3 {
+            font-family: var(--font-display);
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            font-weight: 600;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+        }
+        .lead {
+            font-size: clamp(1.125rem, 1.5vw, 1.375rem);
+            line-height: 1.4;
+            color: var(--text-on-light-2);
+            font-weight: 400;
+            letter-spacing: -0.005em;
+        }
+        .lead.on-dark { color: var(--text-on-dark-2); }
+
+        /* ============================================
+           BUTTONS · tonal, not colorful
+           ============================================ */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4em;
+            padding: 0.85em 1.5em;
+            font-size: 1rem;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+            border-radius: var(--r-full);
+            transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+        .btn .arrow { display: inline-block; transition: transform 0.25s ease; }
+        .btn-primary {
+            background: var(--accent);
+            color: var(--bg-pure);
+        }
+        .btn-primary:hover { background: #2c2c2e; transform: translateY(-1px); }
+        .btn-primary:hover .arrow { transform: translateX(3px); }
+
+        .btn-on-dark-primary {
+            background: var(--accent-on-dark);
+            color: var(--accent);
+        }
+        .btn-on-dark-primary:hover { background: #fff; transform: translateY(-1px); }
+        .btn-on-dark-primary:hover .arrow { transform: translateX(3px); }
+
+        .btn-ghost {
+            color: var(--accent);
+        }
+        .btn-ghost:hover { color: #2c2c2e; }
+        .btn-ghost:hover .arrow { transform: translateX(3px); }
+
+        .btn-ghost-on-dark {
+            color: var(--accent-on-dark);
+        }
+        .btn-ghost-on-dark:hover { color: #fff; }
+        .btn-ghost-on-dark:hover .arrow { transform: translateX(3px); }
+
+        .link-arrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4em;
+            color: var(--accent);
+            font-size: 1.0625rem;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+            transition: color 0.2s ease;
+        }
+        .link-arrow .arrow { display: inline-block; transition: transform 0.25s ease; }
+        .link-arrow:hover { color: #2c2c2e; }
+        .link-arrow:hover .arrow { transform: translateX(4px); }
+        .link-arrow.on-dark { color: var(--accent-on-dark); }
+        .link-arrow.on-dark:hover { color: #fff; }
+
+        /* ============================================
+           NAV
+           ============================================ */
+        .nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.78);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--border-lighter);
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+        .nav.nav-dark {
+            background: rgba(0, 0, 0, 0.78);
+            border-bottom-color: var(--border-on-dark);
+        }
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 48px;
+        }
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-on-light-1);
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: -0.01em;
+        }
+        .nav.nav-dark .nav-brand { color: var(--text-on-dark-1); }
+        .nav-brand img { width: 26px; height: 26px; border-radius: 6px; }
+        .nav-brand .sub {
+            color: var(--text-on-light-3);
+            font-weight: 400;
+            margin-left: 0.25rem;
+        }
+        .nav.nav-dark .nav-brand .sub { color: var(--text-on-dark-3); }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        .nav-links a {
+            font-size: 0.875rem;
+            color: var(--text-on-light-1);
+            opacity: 0.85;
+            transition: opacity 0.2s ease;
+            font-weight: 400;
+        }
+        .nav.nav-dark .nav-links a { color: var(--text-on-dark-1); }
+        .nav-links a:hover { opacity: 1; }
+
+        /* ============================================
+           HERO
+           ============================================ */
+        .hero {
+            background: var(--bg-pure);
+            color: var(--text-on-light-1);
+            padding: calc(48px + 6rem) 0 4rem;
+            text-align: center;
+        }
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.75rem, 7vw, 5.25rem);
+            font-weight: 600;
+            line-height: 1.05;
+            letter-spacing: -0.04em;
+            margin-bottom: 1.25rem;
+            max-width: 18ch;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero p.lead {
+            max-width: 38ch;
+            margin: 0 auto 2rem;
+        }
+        .hero-ctas {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ============================================
+           MODES · 3 engagement models
+           ============================================ */
+        .modes {
+            background: var(--bg-silver);
+            padding: 8rem 0;
+            text-align: center;
+        }
+        .modes h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+            font-weight: 600;
+            line-height: 1.06;
+            letter-spacing: -0.035em;
+            margin-bottom: 1rem;
+        }
+        .modes .lead { color: var(--text-on-light-2); max-width: 40ch; margin: 0 auto 4rem; }
+        .modes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            text-align: left;
+        }
+        .mode-card {
+            background: var(--bg-pure);
+            border-radius: var(--r-xl);
+            padding: 2.5rem 2rem;
+            border: 1px solid var(--border-lighter);
+            transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            color: inherit;
+        }
+        .mode-card:hover { transform: translateY(-3px); }
+        .mode-card .mode-num {
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text-on-light-3);
+            letter-spacing: 0.12em;
+            margin-bottom: 1.5rem;
+        }
+        .mode-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-on-light-1);
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.02em;
+        }
+        .mode-card p {
+            font-size: 0.95rem;
+            color: var(--text-on-light-2);
+            line-height: 1.55;
+            flex-grow: 1;
+        }
+        .mode-card .mode-meta {
+            margin-top: 1.5rem;
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--border-lighter);
+            font-size: 0.875rem;
+            color: var(--text-on-light-2);
+        }
+        .mode-card.featured {
+            background: var(--bg-black);
+            color: var(--text-on-dark-1);
+            border-color: var(--bg-black);
+        }
+        .mode-card.featured .mode-num { color: var(--text-on-dark-3); }
+        .mode-card.featured h3 { color: var(--text-on-dark-1); }
+        .mode-card.featured p { color: var(--text-on-dark-2); }
+        .mode-card.featured .mode-meta { color: var(--text-on-dark-2); border-top-color: var(--border-on-dark); }
+        .mode-card.featured .link-arrow { color: var(--text-on-dark-1); margin-top: 1.5rem; }
+        .mode-card.featured .link-arrow:hover { color: #fff; }
+        .mode-flag {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.25rem;
+            font-size: 0.6875rem;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            color: var(--text-on-dark-1);
+            background: rgba(255,255,255,0.12);
+            padding: 0.3rem 0.65rem;
+            border-radius: var(--r-full);
+        }
+
+        /* ============================================
+           SERVICES · minimal
+           ============================================ */
+        .services {
+            background: var(--bg-pure);
+            padding: 8rem 0;
+            text-align: center;
+        }
+        .services h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2.25rem, 4.5vw, 3.75rem);
+            font-weight: 600;
+            line-height: 1.08;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.875rem;
+        }
+        .services .lead { margin-bottom: 4rem; }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: var(--border-lighter);
+            border: 1px solid var(--border-lighter);
+            border-radius: var(--r-xl);
+            overflow: hidden;
+            margin-bottom: 2.5rem;
+        }
+        .service-item {
+            background: var(--bg-pure);
+            padding: 2.5rem 1.75rem;
+            text-align: left;
+            transition: background 0.2s ease;
+        }
+        .service-item:hover { background: var(--bg-silver); }
+        .service-item .icon {
+            width: 40px;
+            height: 40px;
+            color: var(--accent);
+            margin-bottom: 1.25rem;
+        }
+        .service-item .icon svg { width: 100%; height: 100%; stroke-width: 1.4; }
+        .service-item h3 {
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: var(--text-on-light-1);
+            margin-bottom: 0.4rem;
+            letter-spacing: -0.01em;
+        }
+        .service-item p {
+            font-size: 0.95rem;
+            color: var(--text-on-light-2);
+            line-height: 1.5;
+        }
+
+        /* ============================================
+           CASES · 3 featured
+           ============================================ */
+        .cases {
+            background: var(--bg-silver);
+            padding: 8rem 0;
+            text-align: center;
+        }
+        .cases h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2.25rem, 4.5vw, 3.75rem);
+            font-weight: 600;
+            line-height: 1.08;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.875rem;
+        }
+        .cases .lead { margin-bottom: 4rem; }
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+            margin-bottom: 2.5rem;
+        }
+        .case-card {
+            background: var(--bg-pure);
+            border-radius: var(--r-xl);
+            padding: 2rem;
+            text-align: left;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .case-card:hover { transform: translateY(-3px); }
+        .case-card .industry {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text-on-light-2);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+        .case-card h3 {
+            font-size: 1.375rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.25;
+            color: var(--text-on-light-1);
+            margin-bottom: 0.6rem;
+        }
+        .case-card p {
+            font-size: 0.95rem;
+            color: var(--text-on-light-2);
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+        .case-card .result {
+            margin-top: 1.5rem;
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--border-lighter);
+        }
+        .case-card .result .n {
+            font-family: var(--font-display);
+            font-size: 1.75rem;
+            font-weight: 600;
+            letter-spacing: -0.025em;
+            color: var(--text-on-light-1);
+            line-height: 1;
+        }
+        .case-card .result .l {
+            font-size: 0.8125rem;
+            color: var(--text-on-light-2);
+            margin-top: 0.3rem;
+        }
+
+        /* ============================================
+           CONTACT · simple
+           ============================================ */
+        .contact {
+            background: var(--bg-black);
+            color: var(--text-on-dark-1);
+            padding: 8rem 0;
+            text-align: center;
+        }
+        .contact h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+            font-weight: 600;
+            line-height: 1.06;
+            letter-spacing: -0.035em;
+            margin-bottom: 1rem;
+        }
+        .contact .lead { color: var(--text-on-dark-2); max-width: 38ch; margin: 0 auto 2.5rem; }
+        .contact-email {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
+            font-weight: 400;
+            color: var(--text-on-dark-1);
+            padding: 0.95rem 1.75rem;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid var(--border-on-dark-strong);
+            border-radius: var(--r-full);
+            transition: background 0.25s ease, transform 0.25s ease;
+            margin-bottom: 0.75rem;
+        }
+        .contact-email:hover { background: rgba(255,255,255,0.14); transform: translateY(-1px); }
+        .contact-meta {
+            font-size: 0.875rem;
+            color: var(--text-on-dark-3);
+        }
+
+        /* ============================================
+           FOOTER · minimal
+           ============================================ */
+        footer {
+            background: var(--bg-pure);
+            color: var(--text-on-light-2);
+            padding: 2.25rem 0;
+            border-top: 1px solid var(--border-lighter);
+        }
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            font-size: 0.8125rem;
+        }
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-on-light-1);
+            font-weight: 500;
+        }
+        .footer-brand img { width: 22px; height: 22px; border-radius: 5px; }
+        .footer-meta { color: var(--text-on-light-3); }
+
+        /* ============================================
+           REVEAL
+           ============================================ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: opacity, transform;
+        }
+        .reveal.is-visible { opacity: 1; transform: translateY(0); }
+        .reveal-stagger > * {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal-stagger.is-visible > * { opacity: 1; transform: translateY(0); }
+        .reveal-stagger.is-visible > *:nth-child(1) { transition-delay: 0.05s; }
+        .reveal-stagger.is-visible > *:nth-child(2) { transition-delay: 0.12s; }
+        .reveal-stagger.is-visible > *:nth-child(3) { transition-delay: 0.19s; }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+            .reveal, .reveal-stagger > * { opacity: 1 !important; transform: none !important; }
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 900px) {
+            .nav-links { gap: 1.25rem; }
+            .nav-links a { font-size: 0.8125rem; }
+            .modes-grid { grid-template-columns: 1fr; }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .cases-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 640px) {
+            .nav-links { display: none; }
+            .services-grid { grid-template-columns: 1fr; }
+            .hero, .modes, .services, .cases, .contact { padding: 5rem 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===================== NAV ===================== -->
+    <nav class="nav" id="nav">
+        <div class="container-wide nav-inner">
+            <a href="index.html" class="nav-brand">
+                <img src="logo.png" alt="刻新">
+                <span>刻新<span class="sub">/ Kexin</span></span>
+            </a>
+            <div class="nav-links">
+                <a href="forward-deployed-ai.html">Forward Deployed AI</a>
+                <a href="services.html">服务</a>
+                <a href="cases.html">案例</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===================== HERO ===================== -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="reveal">让 AI 走进<br>你的业务一线。</h1>
+            <p class="lead reveal">刻新 — AI Agent、RAG 知识库、Forward Deployed AI 驻场交付，为企业提供端到端的数字化转型服务。</p>
+            <div class="hero-ctas reveal">
+                <a href="forward-deployed-ai.html" class="btn btn-primary">了解 Forward Deployed AI <span class="arrow" aria-hidden="true">→</span></a>
+                <a href="#contact" class="btn btn-ghost">联系我们</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== HOW WE WORK · 3 engagement modes ===================== -->
+    <section class="modes" id="modes">
+        <div class="container">
+            <span class="eyebrow reveal">/ HOW WE WORK</span>
+            <h2 class="reveal">三种合作模式。</h2>
+            <p class="lead reveal">按你的场景选择 — 从一次性项目到长期驻场，每种模式都有一支团队等着你。</p>
+
+            <div class="modes-grid reveal-stagger">
+                <div class="mode-card">
+                    <div class="mode-num">MODEL 01</div>
+                    <h3>项目制</h3>
+                    <p>按项目交付，适合目标明确、范围清晰的 AI 场景。固定周期、固定预算。</p>
+                    <div class="mode-meta">2-8 周交付</div>
+                </div>
+
+                <a href="forward-deployed-ai.html" class="mode-card featured">
+                    <span class="mode-flag">FLAGSHIP</span>
+                    <div class="mode-num">MODEL 02</div>
+                    <h3>Forward Deployed AI</h3>
+                    <p>资深工程师驻场到你的团队中，端到端交付并完成知识转移。适合复杂业务与战略级 AI 转型。</p>
+                    <div class="mode-meta">4-12 周驻场 · 长期陪跑</div>
+                    <span class="link-arrow">了解详情 <span class="arrow" aria-hidden="true">→</span></span>
+                </a>
+
+                <div class="mode-card">
+                    <div class="mode-num">MODEL 03</div>
+                    <h3>订阅制</h3>
+                    <p>按月或按年订阅智能客服、Agent 等持续运营型服务。含运维、迭代和效果优化。</p>
+                    <div class="mode-meta">月付 / 年付</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== SERVICES ===================== -->
+    <section class="services" id="services">
+        <div class="container">
+            <span class="eyebrow reveal">/ SERVICES</span>
+            <h2 class="reveal">我们能做什么。</h2>
+            <p class="lead reveal">一套完整的 AI 能力 — 从知识库到 Agent，从客服到集成。</p>
+
+            <div class="services-grid reveal-stagger">
+                <a href="services.html#vector" class="service-item">
+                    <div class="icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18M3 12h18M3 17h12"/></svg>
+                    </div>
+                    <h3>数据向量化</h3>
+                    <p>把企业文档转换为向量，搭建专属语义检索底座。</p>
+                </a>
+                <a href="services.html#agent" class="service-item">
+                    <div class="icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.5 9 8 10 4.5-1 8-5 8-10V6l-8-4Z"/><path d="m9 12 2 2 4-4"/></svg>
+                    </div>
+                    <h3>AI Agent 开发</h3>
+                    <p>为业务场景定制的智能体，支持多 Agent 协作。</p>
+                </a>
+                <a href="services.html#rag" class="service-item">
+                    <div class="icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H4z"/><path d="M2 20h20"/><path d="M9 16v4M15 16v4"/></svg>
+                    </div>
+                    <h3>RAG 知识库</h3>
+                    <p>检索增强生成，答案可溯源，准确可信。</p>
+                </a>
+                <a href="services.html#cs" class="service-item">
+                    <div class="icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                    </div>
+                    <h3>智能客服</h3>
+                    <p>7×24 AI 客服，多轮对话，无缝转人工。</p>
+                </a>
+                <a href="services.html#trans" class="service-item">
+                    <div class="icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14"/><path d="M9 9h.01M9 13h.01M9 17h.01M15 9h.01M15 13h.01M15 17h.01"/></svg>
+                    </div>
+                    <h3>企业 AI 化改造</h3>
+                    <p>从现状评估到落地部署，全程陪跑。</p>
+                </a>
+                <a href="services.html#api" class="service-item">
+                    <div class="icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                    </div>
+                    <h3>API & 系统集成</h3>
+                    <p>标准化 API · A2A 协议 · MCP 协议。</p>
+                </a>
+            </div>
+
+            <a href="services.html" class="link-arrow reveal">查看全部服务 <span class="arrow" aria-hidden="true">→</span></a>
+        </div>
+    </section>
+
+    <!-- ===================== CASES · 3 featured ===================== -->
+    <section class="cases" id="cases">
+        <div class="container">
+            <span class="eyebrow reveal">/ CASE STUDIES</span>
+            <h2 class="reveal">已经发生的<br>真实改变。</h2>
+            <p class="lead reveal">从医疗到金融，从制造到政务 — 六个行业，三十个项目。</p>
+
+            <div class="cases-grid reveal-stagger">
+                <a href="case-medical.html" class="case-card">
+                    <div class="industry">医疗健康</div>
+                    <h3>私立医院智能问诊</h3>
+                    <p>基于 RAG 的智能问诊 Agent，连接 HIS 系统，预问诊效率提升 30%。</p>
+                    <div class="result"><div class="n">60%</div><div class="l">客服成本降低</div></div>
+                </a>
+                <a href="case-manufacturing.html" class="case-card">
+                    <div class="industry">制造业</div>
+                    <h3>设备知识管理平台</h3>
+                    <p>上万份设备手册向量化，一线工程师用自然语言查询技术方案。</p>
+                    <div class="result"><div class="n">80%</div><div class="l">查询时间缩短</div></div>
+                </a>
+                <a href="case-finance.html" class="case-card">
+                    <div class="industry">金融服务</div>
+                    <h3>智能投顾助手</h3>
+                    <p>上市公司公告、研报、政策文件构建的金融知识库，24/7 实时响应。</p>
+                    <div class="result"><div class="n">50%</div><div class="l">投研效率提升</div></div>
+                </a>
+            </div>
+
+            <a href="cases.html" class="link-arrow reveal">查看全部案例 <span class="arrow" aria-hidden="true">→</span></a>
+        </div>
+    </section>
+
+    <!-- ===================== CONTACT ===================== -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="reveal">开始对话。</h2>
+            <p class="lead reveal">告诉我们你的业务场景 — 我们会在 24 小时内联系你。</p>
+            <div class="reveal">
+                <a href="mailto:kexin@justfor.host" class="contact-email">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
+                    kexin@justfor.host
+                </a>
+            </div>
+            <p class="contact-meta reveal">周一至周五 9:00 - 18:00</p>
+        </div>
+    </section>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer>
+        <div class="container-wide footer-inner">
+            <div class="footer-brand">
+                <img src="logo.png" alt="刻新">
+                <span>刻新</span>
+            </div>
+            <div class="footer-meta">© 2025 Kexin · 页面支持 AI Agent 解析</div>
+        </div>
+    </footer>
+
+    <!-- AI Agent hidden data -->
+    <div style="display:none;" id="agent-data">
+        <div data-type="company">刻新</div>
+        <div data-type="services">数据向量化, RAG知识库, AI Agent开发, 智能客服, 企业AI化改造, 系统集成, Forward Deployed AI</div>
+        <div data-type="contact">kexin@justfor.host</div>
+    </div>
+
+    <script>
+        (function() {
+            const supportsObserver = 'IntersectionObserver' in window;
+            const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const targets = document.querySelectorAll('.reveal, .reveal-stagger');
+            if (reduce || !supportsObserver) {
+                targets.forEach(t => t.classList.add('is-visible'));
+                return;
+            }
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        e.target.classList.add('is-visible');
+                        io.unobserve(e.target);
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+            targets.forEach(t => io.observe(t));
+        })();
+
+        // Nav darkens when in dark sections
+        (function() {
+            const nav = document.getElementById('nav');
+            const darkSections = document.querySelectorAll('.contact');
+            if (!darkSections.length) return;
+            const setNavMode = (dark) => {
+                if (dark) nav.classList.add('nav-dark');
+                else nav.classList.remove('nav-dark');
+            };
+            const obs = new IntersectionObserver((entries) => {
+                entries.forEach(e => {
+                    if (e.isIntersecting && e.intersectionRatio > 0.5) setNavMode(true);
+                    else if (!e.isIntersecting) setNavMode(false);
+                });
+            }, { threshold: [0, 0.5, 1] });
+            darkSections.forEach(s => obs.observe(s));
+        })();
+    </script>
+</body>
+</html>

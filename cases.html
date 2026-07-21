@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>客户案例 · 六个行业、三十个项目 | 刻新</title>
+    <meta name="description" content="医疗、制造、金融、教育、零售、政务 — 六个行业的真实 AI 转型案例。">
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="stylesheet" href="case-style.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "刻新客户案例",
+      "description": "六个行业、三十个项目的 AI 转型案例",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "私立医院智能问诊系统", "url": "https://kexin.justfor.host/case-medical.html" },
+        { "@type": "ListItem", "position": 2, "name": "设备制造商知识管理平台", "url": "https://kexin.justfor.host/case-manufacturing.html" },
+        { "@type": "ListItem", "position": 3, "name": "证券公司智能投顾助手", "url": "https://kexin.justfor.host/case-finance.html" },
+        { "@type": "ListItem", "position": 4, "name": "在线教育平台智能助教", "url": "https://kexin.justfor.host/case-education.html" },
+        { "@type": "ListItem", "position": 5, "name": "连锁商超智能导购系统", "url": "https://kexin.justfor.host/case-retail.html" },
+        { "@type": "ListItem", "position": 6, "name": "区政府智能政务助手", "url": "https://kexin.justfor.host/case-government.html" }
+      ]
+    }
+    </script>
+    <style>
+        /* Cases index — extends case-style.css */
+        .cases-hero {
+            background: var(--bg-black);
+            color: var(--text-on-dark-1);
+            padding: calc(48px + 6rem) 0 5rem;
+            text-align: center;
+        }
+        .cases-hero .industry {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            color: var(--text-on-dark-1);
+            background: rgba(255,255,255,0.08);
+            border: 1px solid var(--border-on-dark-strong);
+            padding: 0.5rem 1rem;
+            border-radius: var(--r-full);
+            margin-bottom: var(--s-4);
+        }
+        .cases-hero .industry .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent-on-dark);
+            box-shadow: 0 0 8px var(--accent-on-dark);
+        }
+        .cases-hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+            font-weight: 600;
+            line-height: 1.05;
+            letter-spacing: -0.035em;
+            margin-bottom: 1rem;
+        }
+        .cases-hero .lead {
+            color: var(--text-on-dark-2);
+            max-width: 50ch;
+            margin: 0 auto;
+        }
+
+        .cases-list {
+            padding: 5rem 0 6rem;
+            background: var(--bg-silver);
+        }
+        .cases-list-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+        .cases-list-card {
+            position: relative;
+            background: var(--bg-pure);
+            border-radius: var(--r-xl);
+            padding: 2.25rem 2rem 2rem;
+            border: 1px solid var(--border-lighter);
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        box-shadow 0.3s ease;
+        }
+        .cases-list-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 24px 60px rgba(0,0,0,0.10);
+        }
+        .cases-list-card .industry {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text-on-light-2);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+        .cases-list-card h3 {
+            font-size: 1.375rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.25;
+            color: var(--text-on-light-1);
+            margin-bottom: 0.6rem;
+        }
+        .cases-list-card p {
+            font-size: 0.95rem;
+            color: var(--text-on-light-2);
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+        .cases-list-card .stats {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--border-lighter);
+        }
+        .cases-list-card .stat {
+            display: flex;
+            flex-direction: column;
+        }
+        .cases-list-card .stat .n {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: var(--text-on-light-1);
+            line-height: 1;
+        }
+        .cases-list-card .stat .l {
+            font-size: 0.75rem;
+            color: var(--text-on-light-3);
+            margin-top: 0.3rem;
+        }
+        .cases-list-card .arrow {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.04);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-on-light-2);
+            transition: all 0.3s ease;
+        }
+        .cases-list-card:hover .arrow {
+            background: var(--accent);
+            color: var(--bg-pure);
+            transform: rotate(-45deg);
+        }
+        .cases-list-card .arrow svg { width: 14px; height: 14px; }
+
+        @media (max-width: 1024px) {
+            .cases-list-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 640px) {
+            .cases-list-grid { grid-template-columns: 1fr; }
+            .cases-list { padding: 3.5rem 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="nav">
+        <div class="container nav-inner">
+            <a href="index.html" class="nav-brand">
+                <img src="logo.png" alt="刻新">
+                <span class="nav-brand-text">刻新<span class="sub">/ Kexin</span></span>
+            </a>
+            <div class="nav-links">
+                <a href="forward-deployed-ai.html">Forward Deployed AI</a>
+                <a href="services.html">服务</a>
+                <a href="cases.html">案例</a>
+            </div>
+            <a href="index.html#contact" class="nav-cta">联系我们</a>
+        </div>
+    </nav>
+
+    <section class="cases-hero">
+        <div class="container-narrow">
+            <span class="industry"><span class="dot"></span>Case Studies</span>
+            <h1>六个行业，<br>三十个项目。</h1>
+            <p class="lead">从医疗到金融，从制造到政务 — 看看我们与不同行业的客户一起，把 AI 真正用到了业务里。</p>
+        </div>
+    </section>
+
+    <section class="cases-list">
+        <div class="container-wide">
+            <div class="cases-list-grid reveal-stagger">
+                <a href="case-medical.html" class="cases-list-card">
+                    <span class="industry">医疗健康</span>
+                    <h3>私立医院智能问诊系统</h3>
+                    <p>基于 RAG 的智能问诊 Agent，连接 HIS 系统获取患者历史记录，提供预问诊、症状分析、挂号引导。</p>
+                    <div class="stats">
+                        <div class="stat"><span class="n">60%</span><span class="l">客服成本</span></div>
+                        <div class="stat"><span class="n">30%</span><span class="l">问诊效率</span></div>
+                    </div>
+                    <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                </a>
+
+                <a href="case-manufacturing.html" class="cases-list-card">
+                    <span class="industry">制造业</span>
+                    <h3>设备制造商知识管理平台</h3>
+                    <p>将设备手册、技术文档、售后 FAQ 等上万份文档向量化，一线工程师用自然语言查询技术方案。</p>
+                    <div class="stats">
+                        <div class="stat"><span class="n">80%</span><span class="l">查询提速</span></div>
+                        <div class="stat"><span class="n">45%</span><span class="l">培训成本</span></div>
+                    </div>
+                    <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                </a>
+
+                <a href="case-finance.html" class="cases-list-card">
+                    <span class="industry">金融服务</span>
+                    <h3>证券公司智能投顾助手</h3>
+                    <p>上市公司公告、研报、政策文件构建的金融知识库，赋能投顾团队的实时检索与报告生成。</p>
+                    <div class="stats">
+                        <div class="stat"><span class="n">50%</span><span class="l">投研效率</span></div>
+                        <div class="stat"><span class="n">24/7</span><span class="l">实时响应</span></div>
+                    </div>
+                    <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                </a>
+
+                <a href="case-education.html" class="cases-list-card">
+                    <span class="industry">教育培训</span>
+                    <h3>在线教育平台智能助教</h3>
+                    <p>课程内容、教材、题库向量化 — 答疑、批改、推荐学习资源的智能助教 Agent。</p>
+                    <div class="stats">
+                        <div class="stat"><span class="n">70%</span><span class="l">响应提速</span></div>
+                        <div class="stat"><span class="n">35%</span><span class="l">完课率</span></div>
+                    </div>
+                    <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                </a>
+
+                <a href="case-retail.html" class="cases-list-card">
+                    <span class="industry">零售电商</span>
+                    <h3>连锁商超智能导购系统</h3>
+                    <p>商品信息、促销政策、用户评价向量化 — 线下门店的智能推荐、库存查询与全渠道协同。</p>
+                    <div class="stats">
+                        <div class="stat"><span class="n">25%</span><span class="l">客单价</span></div>
+                        <div class="stat"><span class="n">40%</span><span class="l">转化率</span></div>
+                    </div>
+                    <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                </a>
+
+                <a href="case-government.html" class="cases-list-card">
+                    <span class="industry">政务服务</span>
+                    <h3>区政府智能政务助手</h3>
+                    <p>政务事项、办事指南、政策文件整合 — 答疑、引导办事流程的智能政务 Agent。</p>
+                    <div class="stats">
+                        <div class="stat"><span class="n">55%</span><span class="l">窗口减压</span></div>
+                        <div class="stat"><span class="n">90%</span><span class="l">市民满意</span></div>
+                    </div>
+                    <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="case-cta">
+        <div class="container-narrow">
+            <span class="eyebrow on-dark">/ READY?</span>
+            <h2>你的项目<br>会是下一个案例。</h2>
+            <p class="lead">告诉我们你的业务场景 — 我们会在 24 小时内联系你，聊聊 AI 能为你的企业带来什么。</p>
+            <div class="case-cta-actions">
+                <a href="index.html#contact" class="btn btn-on-dark-primary">联系我们 <span aria-hidden="true">→</span></a>
+                <a href="forward-deployed-ai.html" class="btn btn-on-dark-ghost">了解 Forward Deployed AI</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-inner">
+            <div class="footer-brand">
+                <img src="logo.png" alt="刻新">
+                <span>上海刻新生物科技有限公司</span>
+            </div>
+            <div class="footer-meta">© 2025 Kexin · 为每个企业注入 AI 基因</div>
+        </div>
+    </footer>
+
+    <div style="display:none;" id="agent-data">
+        <div data-type="company">刻新</div>
+        <div data-type="page">cases index</div>
+        <div data-type="cases">6 个行业案例：医疗、制造、金融、教育、零售、政务</div>
+        <div data-type="engagementModels">项目制, Forward Deployed AI, 订阅制</div>
+    </div>
+
+    <script>
+        (function() {
+            const supportsObserver = 'IntersectionObserver' in window;
+            const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const targets = document.querySelectorAll('.reveal, .reveal-stagger');
+            if (reduce || !supportsObserver) {
+                targets.forEach(t => t.classList.add('is-visible'));
+                return;
+            }
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        e.target.classList.add('is-visible');
+                        io.unobserve(e.target);
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+            targets.forEach(t => io.observe(t));
+        })();
+
+        (function() {
+            const nav = document.querySelector('.nav');
+            let ticking = false;
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    requestAnimationFrame(() => {
+                        if (window.scrollY > 24) nav.style.background = 'rgba(0, 0, 0, 0.86)';
+                        else nav.style.background = 'rgba(0, 0, 0, 0.72)';
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            }, { passive: true });
+        })();
+    </script>
+</body>
+</html>
